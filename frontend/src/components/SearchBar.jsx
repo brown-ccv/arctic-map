@@ -73,14 +73,14 @@ export default function SearchBar({ map }) {
   };
 
   return (
-    <div style={{ position: "absolute", top: 10, right: 10, zIndex: 999 }}>
+    <div className="search-bar-container">
       <input
+        className="search-bar-input"
         value={query}
         onChange={e => setQuery(e.target.value)}
         placeholder="Search for a location..."
-        style={{ padding: '6px', width: '200px', borderRadius: '5px', border: "1.5px solid #1976d2"}}
       />
-      <button onClick={handleSearch} style={{ marginLeft: '5px', padding: '5px' }}>
+      <button className="search-bar-button" onClick={handleSearch}>
         Search
       </button>
     </div>
