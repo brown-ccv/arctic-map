@@ -9,6 +9,7 @@ import thematicMapConfigs from "./config/thematicMapConfigs";
 import "./styles/Sidebar.css";
 import "./styles/ThematicMap.css";
 import "./styles/Toolbar.css";
+import { getApiUrl } from './config/api';
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -48,6 +49,8 @@ const App = () => {
     }
   }, [mapboxMap, isThematicMode, isSidebarOpen]);
 
+console.log(getApiUrl('/api/spatial-query'));
+
   const handleDrawnGeometry = useCallback(async (geometry) => {
     setDrawnGeometry(geometry);
     if (geometry) {
@@ -56,8 +59,10 @@ const App = () => {
         console.warn("No active layers to perform spatial query against.");
         return;
       }
+
       try {
-        const response = await fetch('http://localhost:8000/api/spatial-query', {
+        
+        const response = await fetch(getApiUrl('/api/spatial-query'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ drawn_boundary: geometry, target_layers: userSelectedLayers }),
@@ -81,7 +86,7 @@ const App = () => {
   const handleSearch = useCallback(async (query) => {
     if (!query || !mapboxMap) return;
     try {
-      const res = await fetch(`http://localhost:8000/api/geocode?query=${encodeURIComponent(query)}`);
+      const res = await fetch(getApiUrl(`/api/geocode?query=${encodeURIComponent(query)}`));
       if (!res.ok) {
         const errorData = await res.json();
         throw new Error(errorData.detail || `HTTP error! Status: ${res.status}`);

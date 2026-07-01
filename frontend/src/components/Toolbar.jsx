@@ -295,7 +295,7 @@ const Toolbar = ({ isThematicMode, onThematicModeToggle, drawRef, onDrawGeometry
             This web application is a project of the <a href="https://nna-cpad.org/">CPAD consortium</a> and is licensed under the <a href="https://opensource.org/licenses/MIT">MIT License</a>.
           </p>
           <p>
-            Credits: Developed by Brown University students Soujanya Aryal and Noreen Chen.
+            Credits: Developed by Brown University students Soujanya Aryal, Noreen Chen, and Advait Mishra.
           </p>
         </div>
       </div>

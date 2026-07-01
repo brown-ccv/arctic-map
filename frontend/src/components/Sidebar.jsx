@@ -309,7 +309,7 @@ const Sidebar = ({ onLayerToggle, isThematicMode, onThematicModeToggle, isSideba
           </p>
 
           <p>
-            Credits: Developed by Brown University students Soujanya Aryal and Noreen Chen.
+            Credits: Developed by Brown University students Soujanya Aryal, Noreen Chen, and Advait Mishra.
           </p>
         </Popup>
       )}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import thematicMapConfigs from '../config/thematicMapConfigs';
 import '../styles/ThematicMap.css'; 
+import { getApiUrl } from '../config/api';
 
 // Helper function to apply thematic styling 
 const applyThematicStyling = async (map, layerConfig, attribute, setMinMaxValues) => {
@@ -19,7 +20,7 @@ const applyThematicStyling = async (map, layerConfig, attribute, setMinMaxValues
   if (map.getSource(sourceId)) map.removeSource(sourceId);
 
   try {
-    const res = await fetch(`http://localhost:8000/api/geojson/${layerConfig.layerName}`);
+    const res = await fetch(getApiUrl(`/api/geojson/${layerConfig.layerName}`));
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     const geojson = await res.json();
 
@@ -168,7 +169,7 @@ const ThematicMap = ({ mapboxMap, onThematicModeToggle }) => {
 
   const handleViewMetadata = () => {
     if (selectedAttributeId) {
-      window.open(`http://localhost:8000/api/metadata_html/${selectedAttributeId}`, "_blank");
+      window.open(getApiUrl(`/api/metadata_html/${selectedAttributeId}`), "_blank");
     } else {
       console.warn("No attribute selected to view metadata.");
     }
